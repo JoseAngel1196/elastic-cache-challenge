@@ -25,3 +25,10 @@ resource "aws_db_instance" "rds" {
   publicly_accessible = true
   skip_final_snapshot = true
 }
+
+resource "aws_elasticache_cluster" "cache" {
+  cluster_id           = "cluster-elastic-challenge"
+  engine               = "redis"
+  node_type            = "cache.t2.micro"
+  port                 = 6379
+}
