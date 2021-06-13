@@ -5,14 +5,13 @@ module "elastic_server" {
   public_key = local.public_key
 }
 
-/*
 module "rds" {
   source        = "./rds"
   identifier_in = "jose-rds-instance"
   name_in       = "jose_rds_elastic_challenge"
   access_key    = local.access_key
   secret_key    = local.secret_key
-} */
+}
 
 module "redis" {
   source        = "./redis"

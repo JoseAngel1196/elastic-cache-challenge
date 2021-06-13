@@ -1,6 +1,6 @@
 # /usr/bin/python2.7
 import psycopg2
-from flask import Flask, request, render_template, g, abort
+from flask import Flask, render_template, g, abort
 from settings import DATABASE, HOST, PASSWORD, PORT, USER
 import time
 
@@ -62,8 +62,7 @@ def index():
         db_version = ''.join(db_result)
     else:
         abort(500)
-    params = config()
-    return render_template('index.html', db_version=db_version, db_host=params['host'])
+    return render_template('index.html', db_version=db_version, db_host=HOST)
 
 
 if __name__ == "__main__":        # on running python app.py
