@@ -1,3 +1,7 @@
+variable "cluster_id_in" {
+  type = string
+}
+
 variable "access_key" {
   type = string
 }

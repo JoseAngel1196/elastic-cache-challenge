@@ -1,34 +1,14 @@
-resource "random_password" "password" {
-  length  = 50
-  special = false
+module "rds" {
+  source        = "./rds"
+  identifier_in = "jose-rds-instance"
+  name_in       = "jose-rds-elastic-challenge"
+  access_key    = local.access_key
+  secret_key    = local.secret_key
 }
 
-resource "aws_db_instance" "rds" {
-  // RDS Instance Identifier
-  identifier = "jose-rds-instance"
-
-  // Name of DB to create in RDS Instance
-  name = "elastic_challenge"
-
-  username = "jose"
-  password = random_password.password.result
-
-  // Default postgres port
-  port = 5432
-
-  engine         = "postgres"
-  engine_version = "12.5"
-
-  instance_class    = var.instance_class
-  allocated_storage = 5
-
-  publicly_accessible = true
-  skip_final_snapshot = true
-}
-
-resource "aws_elasticache_cluster" "cache" {
-  cluster_id           = "cluster-elastic-challenge"
-  engine               = "redis"
-  node_type            = "cache.t2.micro"
-  port                 = 6379
+module "redis" {
+  source        = "./redis"
+  cluster_id_in = "cluster-elastic-challenge"
+  access_key    = local.access_key
+  secret_key    = local.secret_key
 }
