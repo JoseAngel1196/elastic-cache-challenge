@@ -1,6 +1,7 @@
 # /usr/bin/python2.7
 import psycopg2
 from flask import Flask, render_template, g, abort
+import redis
 from settings import DATABASE, HOST, PASSWORD, PORT, USER
 import time
 
@@ -8,23 +9,28 @@ CONNECT_DB = f"host={HOST} port={PORT} dbname={DATABASE} user={USER} password={P
 
 
 def fetch(sql):
-    # connect to database listed in database.ini
-    conn = connect()
-    if(conn != None):
-        cur = conn.cursor()
-        cur.execute(sql)
+    cache = redis.Redis.from_url()
+    result = cache.get(sql)
 
-        # fetch one row
-        retval = cur.fetchone()
-
-        # close db connection
-        cur.close()
-        conn.close()
-        print("PostgreSQL connection is now closed")
-
-        return retval
+    if result:
+        return result
     else:
-        return None
+        conn = connect()
+        if(conn != None):
+            cur = conn.cursor()
+            cur.execute(sql)
+
+            # fetch one row
+            retval = cur.fetchone()
+
+            # close db connection
+            cur.close()
+            conn.close()
+            print("PostgreSQL connection is now closed")
+
+            return retval
+        else:
+            return None
 
 
 def connect():
