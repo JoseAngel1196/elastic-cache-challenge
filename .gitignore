@@ -1,6 +1,3 @@
-# Ignore database.ini
-config/database.ini
-
 # Local .terraform directories
 **/.terraform/*
 
