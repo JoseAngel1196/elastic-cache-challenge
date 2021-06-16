@@ -1,8 +1,3 @@
-resource "random_string" "username" {
-  length  = 10
-  special = false
-}
-
 resource "random_password" "password" {
   length  = 50
   special = false
@@ -10,12 +5,12 @@ resource "random_password" "password" {
 
 resource "aws_db_instance" "rds" {
   // RDS Instance Identifier
-  identifier = var.identifier_in
+  identifier = "elastic-identity"
 
   // Name of DB to create in RDS Instance
-  name = var.name_in
+  name = "elastic_rds"
 
-  username = random_string.username.result
+  username = "jhidalgo"
   password = random_password.password.result
 
   // Default postgres port
@@ -24,7 +19,7 @@ resource "aws_db_instance" "rds" {
   engine         = "postgres"
   engine_version = "12.5"
 
-  instance_class    = "db.m6g.large"
+  instance_class    = "db.t3.micro"
   allocated_storage = 5
 
   publicly_accessible = true
