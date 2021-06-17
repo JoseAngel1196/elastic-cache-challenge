@@ -1,6 +1,6 @@
 resource "aws_network_interface" "interface" {
   subnet_id       = var.public_subnet_id
-  security_groups = ["sg-09e0da3cdecee0755"]
+  security_groups = [var.sg_id_in]
 
   tags = {
     Name = "${var.namespace}-interface"

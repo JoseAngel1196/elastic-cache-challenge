@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "cluster_subnet" {
   name       = "redis-cluster"
-  subnet_ids = ["subnet-090dcea4bcccc5dc0", "subnet-0887cd36d76729397"]
+  subnet_ids = [var.public_subnet_id_in, var.private1_subnet_id_in]
 }
 
 
@@ -12,7 +12,7 @@ resource "aws_elasticache_cluster" "redis" {
   parameter_group_name = "default.redis6.x"
   engine_version       = "6.x"
   port                 = 6379
-  availability_zone    = "us-east-1a"
+  availability_zone    = var.region_in
   subnet_group_name    = aws_elasticache_subnet_group.cluster_subnet.name
-  security_group_ids   = ["sg-09e0da3cdecee0755"]
+  security_group_ids   = [var.sg_id_in]
 }
