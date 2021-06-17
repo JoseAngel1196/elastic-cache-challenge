@@ -1,3 +1,8 @@
+resource "aws_db_subnet_group" "rds_subnet" {
+  name       = "rds-subnet-elastic"
+  subnet_ids = ["subnet-090dcea4bcccc5dc0", "subnet-0887cd36d76729397"]
+}
+
 resource "random_password" "password" {
   length  = 50
   special = false
@@ -22,6 +27,8 @@ resource "aws_db_instance" "rds" {
   instance_class    = "db.t3.micro"
   allocated_storage = 5
 
-  publicly_accessible = true
-  skip_final_snapshot = true
+  publicly_accessible    = true
+  skip_final_snapshot    = true
+  # vpc_security_group_ids = ["sg-09e0da3cdecee0755"]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet.name
 }

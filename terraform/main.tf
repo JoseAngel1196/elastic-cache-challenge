@@ -22,17 +22,17 @@ module "server" {
   key_name         = module.ssh.key_name
 }
 
-module "redis" {
-  source     = "./redis"
-  namespace  = var.namespace
-  access_key = local.access_key
-  secret_key = local.secret_key
-}
+# module "redis" {
+#   source     = "./redis"
+#   namespace  = var.namespace
+#   access_key = local.access_key
+#   secret_key = local.secret_key
+# }
 
-module "rds" {
-  source     = "./rds"
-  access_key = local.access_key
-  secret_key = local.secret_key
-  namespace  = var.namespace
-}
+# module "rds" {
+#   source     = "./rds"
+#   access_key = local.access_key
+#   secret_key = local.secret_key
+#   namespace  = var.namespace
+# }
 
