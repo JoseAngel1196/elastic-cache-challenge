@@ -11,3 +11,7 @@ variable "namespace" {
 }
 
 variable "sg_id_in" {}
+
+variable "public_subnet_id_in" {}
+
+variable "key_name_in" {}

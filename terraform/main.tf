@@ -14,11 +14,13 @@ module "ssh" {
 }
 
 module "server" {
-  source     = "./server"
-  access_key = local.access_key
-  secret_key = local.secret_key
-  namespace  = var.namespace
-  sg_id_in   = module.networking.sg_id
+  source              = "./server"
+  access_key          = local.access_key
+  secret_key          = local.secret_key
+  namespace           = var.namespace
+  sg_id_in            = module.networking.sg_id
+  public_subnet_id_in = module.networking.public_subnet_id
+  key_name_in         = module.ssh.key_name
 }
 
 module "redis" {

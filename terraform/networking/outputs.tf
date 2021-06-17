@@ -1,5 +1,11 @@
-output "public_subnet_id" {}
+output "public_subnet_id" {
+  value = aws_subnet.public.id
+}
 
-output "private1_subnet_id" {}
+output "private1_subnet_id" {
+  value = aws_subnet.private1.id
+}
 
-output "sg_id" {}
+output "sg_id" {
+  value = aws_security_group.sg.id
+}
