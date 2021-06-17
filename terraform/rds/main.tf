@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "rds_subnet" {
   name       = "rds-subnet-elastic"
-  subnet_ids = [var.public_subnet_id_in, var.private1_subnet_id_in]
+  subnet_ids = [var.public_subnet_id_in, var.private2_subnet_id_in]
 }
 
 resource "random_password" "password" {
@@ -30,4 +30,5 @@ resource "aws_db_instance" "rds" {
   publicly_accessible  = true
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.rds_subnet.name
+  vpc_security_group_ids = [var.sg_id_in]
 }

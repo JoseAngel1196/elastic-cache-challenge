@@ -40,6 +40,7 @@ module "rds" {
   secret_key            = local.secret_key
   namespace             = var.namespace
   public_subnet_id_in   = module.networking.public_subnet_id
-  private1_subnet_id_in = module.networking.private1_subnet_id
+  private2_subnet_id_in = module.networking.private2_subnet_id
+  sg_id_in              = module.networking.sg_id
 }
 

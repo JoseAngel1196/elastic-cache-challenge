@@ -12,9 +12,11 @@ variable "secret_key" {
 
 variable "public_subnet_id_in" {}
 
-variable "private1_subnet_id_in" {}
+variable "private2_subnet_id_in" {}
 
 variable "username" {
   type    = string
   default = "jhidalgo"
 }
+
+variable "sg_id_in" {}
