@@ -2,7 +2,7 @@ import psycopg2
 from configparser import ConfigParser
 from flask import Flask   
 
-def config(filename='database.ini', section='postgresql'):
+def config(filename='config/database.ini', section='postgresql'):
     # create a parser
     parser = ConfigParser()
     # read config file

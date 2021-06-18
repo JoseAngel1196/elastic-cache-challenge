@@ -4,7 +4,7 @@ from flask import Flask, render_template, g, abort
 import redis
 import time
 
-def config(filename='database.ini', section='postgresql'):
+def config(filename='config/database.ini', section='postgresql'):
     # create a parser
     parser = ConfigParser()
     # read config file
